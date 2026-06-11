@@ -3,7 +3,7 @@
 
 # Basic log file check for failed login attempts
 
-log_file_path = "" # Change this to your file location
+log_file_path = "/home/enzodeluca/Projects/Python/Cybersec/ssh_mock.log" # Change this to your file location
 
 failed_attempts = {}
 

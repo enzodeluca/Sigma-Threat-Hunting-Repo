@@ -10,12 +10,12 @@ print("Generating mock security log file...")
 
 with open("ssh_mock.log", "w") as f:
     # Let's generate 50 log lines
-    for _ in range(50):
+    for _ in range(100):
         timestamp = time.strftime("%b %d %H:%M:%S")
         
         if random.random() < 0.3:
             ip = random.choice(user_ips)
-            f.write(f"{timestamp} myserver sshd[12345]: Accepted password for user from {ip} port 54321 ssh2\n")
+            f.write(f"{timestamp} myserver sshd[12345]: Accepted password for user john_doe from {ip} port 54321 ssh2\n")
         
         else:
             user = random.choice(usernames)
