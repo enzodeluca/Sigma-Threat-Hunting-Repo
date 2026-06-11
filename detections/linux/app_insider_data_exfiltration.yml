@@ -1,0 +1,22 @@
+title: Insider Application Download Activity
+id: e4b236fa-6789-4bba-911a-1d54d92efc01
+status: experimental
+description: Extrapolates unusual high user download activity
+author: 'Enzo DeLuca'
+date: 2026-06-03
+tags:
+    - attack.exfiltration
+    - attack.t1020  # Automated Exfiltration
+logsource:
+    category: file_activity
+detection:
+    selection:
+        action: 'Download'
+    timeframe: 1d
+    condition: selection | count(action) > 100
+fields:
+    - username
+    - filename
+falsepositives:
+    - 'Authorized bulk migrations by data administrators or database backup procedures.'
+level: high
