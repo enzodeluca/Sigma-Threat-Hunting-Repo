@@ -1,0 +1,22 @@
+title: LSASS Memory Access via Non-Standard Process
+id: a1b2c3d4-1234-5678-abcd-ef1234567890
+status: experimental
+description: Detects unusual processes requesting access to LSASS memory, which may indicate credential dumping attempts (e.g., Mimikatz, Comsvcs).
+author: 'Enzo DeLuca'
+date: 2026-06-11
+tags:
+    - attack.credential_access
+    - attack.t1003.001  # LSASS Memory
+logsource:
+    product: windows
+    service: sysmon
+detection:
+    selection:
+        EventID: 10
+        TargetImage|endswith: '\lsass.exe'
+    filter:
+        SourceImage|endswith: '\wininit.exe'
+    condition: selection and not filter
+falsepositives:
+    - Third-party antivirus or endpoint protection agents performing security scanning.
+level: high
